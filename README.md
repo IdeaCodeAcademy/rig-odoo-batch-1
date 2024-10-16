@@ -1,0 +1,1 @@
+# rig-odoo-batch-1
