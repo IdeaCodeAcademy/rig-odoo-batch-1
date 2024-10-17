@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ica_lesson_view_tree" model="ir.ui.view">
+        <field name="name">ica_lesson_view_tree</field>
+        <field name="model">ica.lesson</field>
+        <field name="arch" type="xml">
+            <list string="ica_lesson_tree">
+                <field name="course_id"/>
+                <field name="name"/>
+                <field name="type"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ica_lesson_view_form" model="ir.ui.view">
+        <field name="name">ica_lesson_view_form</field>
+        <field name="model">ica.lesson</field>
+        <field name="arch" type="xml">
+            <form string="ica_lesson_form">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+<!--                           statusbar_visible="published"/>-->
+                </header>
+                <sheet>
+                    <field name="photo" invisible="type != 'photo'" widget="image" class="oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="course_id"/>
+                            <field name="type"/>
+                        </group>
+                        <group>
+                            <field name="text" invisible="type != 'text'"/>
+                            <field name="video" invisible="type != 'video'"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="ica_lesson_action" model="ir.actions.act_window">
+        <field name="name">Lessons</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ica.lesson</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
