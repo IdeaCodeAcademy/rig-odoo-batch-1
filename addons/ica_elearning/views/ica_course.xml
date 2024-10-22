@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <record id="ica_course_view_tree" model="ir.ui.view">
+        <field name="name">ica_course_view_tree</field>
+        <field name="model">ica.course</field>
+        <field name="arch" type="xml">
+            <list string="ica_course_tree">
+                <field name="name"/>
+                <field name="currency_id" optional="hide"/>
+                <field name="fees" optional="show" sum="Total Fees"/>
+                <field name="state" widget="badge"
+                       decoration-danger="state == 'cancelled'"
+                       decoration-success="state == 'published'"/>
+            </list>
+        </field>
+    </record>
+
     <record id="ica_course_view_form" model="ir.ui.view">
         <field name="name">ica_course_view_form</field>
         <field name="model">ica.course</field>
         <field name="arch" type="xml">
             <form string="ica_course_form">
                 <header>
+                    <button name="action_draft" type="object" string="Draft"
+                            class="btn btn-secondary" invisible="state != 'cancelled'"/>
+                    <button name="action_published" type="object" string="Published"
+                            class="btn btn-success" invisible="state != 'draft'"/>
+<!--                    <button name="action_add_lesson" type="object" string="Add Lesson"-->
+<!--                            class="btn btn-primary" invisible="state != 'draft'"/>-->
+                    <button name="%(ica_elearning.ica_lesson_action)d" type="action" string="Add Lesson"
+                            context="{'default_course_id':id}"
+                            class="btn btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_cancelled" type="object" string="Cancel"
+                            class="btn btn-danger" invisible="state != 'published'"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -57,6 +83,25 @@
             </form>
         </field>
     </record>
+
+
+    <record id="ica_course_view_search" model="ir.ui.view">
+        <field name="name">ica_course_view_search</field>
+        <field name="model">ica.course</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="state"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <filter string="UnArchived" name="active" domain="[('active', '=', True)]"/>
+                <group expand="0" string="Group By" colspan="4">
+                    <filter string="Instructor" name="instructor" context="{'group_by':'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
 
     <record id="ica_course_action" model="ir.actions.act_window">
         <field name="name">Courses</field>
