@@ -122,14 +122,15 @@
         <field name="view_mode">list,form</field>
     </record>
 
-<!--    <record model="ir.actions.server" id="print_instance">-->
-<!--        <field name="name">Server Action</field>-->
-<!--        <field name="model_id" ref="ica_elearning.model_ica_course"/>-->
-<!--        <field name="state">code</field>-->
-<!--        <field name="code">-->
-<!--&lt;!&ndash;            if records:&ndash;&gt;-->
-<!--                action = records.action_published()-->
-<!--        </field>-->
-<!--    </record>-->
+    <record model="ir.actions.server" id="print_instance">
+        <field name="name">Server Action</field>
+        <field name="model_id" ref="ica_elearning.model_ica_course"/>
+        <field name="binding_model_id" ref="ica_elearning.model_ica_course"/>
+            <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">
+            records.action_published()
+        </field>
+    </record>
 
 </odoo>
