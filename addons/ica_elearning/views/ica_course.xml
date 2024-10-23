@@ -25,8 +25,8 @@
                             class="btn btn-secondary" invisible="state != 'cancelled'"/>
                     <button name="action_published" type="object" string="Published"
                             class="btn btn-success" invisible="state != 'draft'"/>
-<!--                    <button name="action_add_lesson" type="object" string="Add Lesson"-->
-<!--                            class="btn btn-primary" invisible="state != 'draft'"/>-->
+                    <!--                    <button name="action_add_lesson" type="object" string="Add Lesson"-->
+                    <!--                            class="btn btn-primary" invisible="state != 'draft'"/>-->
                     <button name="%(ica_elearning.ica_lesson_action)d" type="action" string="Add Lesson"
                             context="{'default_course_id':id}"
                             class="btn btn-primary" invisible="state != 'draft'"/>
@@ -35,6 +35,18 @@
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                            <button name="action_add_lesson" type="object"
+                                    icon="fa-plus-square" class="oe_stat_button">
+                                    <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value d-flex gap-1">
+                                        <field name="lesson_count" widget="statinfo" nolabel="1" class="oe_inline"/>
+<!--                                        <field name="uom_name" class="oe_inline"/>-->
+                                    </span>
+                                    <span class="o_stat_text">Lessons</span>
+                                </div>
+                            </button>
+                        </div>
                     <group>
                         <group>
                             <field name="name"/>
@@ -109,4 +121,15 @@
         <field name="res_model">ica.course</field>
         <field name="view_mode">list,form</field>
     </record>
+
+<!--    <record model="ir.actions.server" id="print_instance">-->
+<!--        <field name="name">Server Action</field>-->
+<!--        <field name="model_id" ref="ica_elearning.model_ica_course"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--&lt;!&ndash;            if records:&ndash;&gt;-->
+<!--                action = records.action_published()-->
+<!--        </field>-->
+<!--    </record>-->
+
 </odoo>

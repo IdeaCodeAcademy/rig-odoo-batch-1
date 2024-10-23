@@ -19,6 +19,11 @@ class Course(models.Model):
     fees = fields.Monetary()
     lesson_ids = fields.One2many('ica.lesson', 'course_id', domain=[('state', '=', 'published')])
     active = fields.Boolean(default=True)
+    lesson_count = fields.Integer(compute="_compute_lesson_count")
+
+    @api.depends('lesson_ids')
+    def _compute_lesson_count(self):
+        self.lesson_count = len(self.lesson_ids)
 
     def action_draft(self):
         self.state = 'draft'
@@ -31,12 +36,12 @@ class Course(models.Model):
     def action_cancelled(self):
         self.state = 'cancelled'
 
-    # def action_add_lesson(self):
-    #     return {
-    #         'type': 'ir.actions.act_window',
-    #         "name": "Add Lesson",
-    #         "res_model": "ica.lesson",
-    #         "view_mode": "form",
-    #         "target": "new",
-    #         "context":{"default_course_id":self.id}
-    #     }
+    def action_add_lesson(self):
+        return {
+            'type': 'ir.actions.act_window',
+            "name": "Add Lesson",
+            "res_model": "ica.lesson",
+            "view_mode": "list",
+            "target": "current",
+            "context":{"default_course_id":self.id}
+        }
