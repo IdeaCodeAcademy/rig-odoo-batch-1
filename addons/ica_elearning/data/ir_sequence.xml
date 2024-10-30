@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="seq_ica_course" model="ir.sequence">
+        <field name="name">ICA-Course</field>
+        <field name="code">ica.course</field>
+        <field name="prefix">ICA</field>
+        <field name="padding">6</field>
+    </record>
+
+</odoo>

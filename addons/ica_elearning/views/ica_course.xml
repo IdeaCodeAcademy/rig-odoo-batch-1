@@ -30,23 +30,32 @@
                     <button name="%(ica_elearning.ica_lesson_action)d" type="action" string="Add Lesson"
                             context="{'default_course_id':id}"
                             class="btn btn-primary" invisible="state != 'draft'"/>
+                    <button name="%(ica_elearning.ica_order_wizard_action)d" type="action" string="Order"
+                            context="{'default_course_id':id}"
+                            class="btn btn-primary" invisible="state != 'draft'"/>
                     <button name="action_cancelled" type="object" string="Cancel"
                             class="btn btn-danger" invisible="state != 'published'"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                            <button name="action_add_lesson" type="object"
-                                    icon="fa-plus-square" class="oe_stat_button">
-                                    <div class="o_field_widget o_stat_info">
-                                    <span class="o_stat_value d-flex gap-1">
-                                        <field name="lesson_count" widget="statinfo" nolabel="1" class="oe_inline"/>
-<!--                                        <field name="uom_name" class="oe_inline"/>-->
-                                    </span>
-                                    <span class="o_stat_text">Lessons</span>
-                                </div>
-                            </button>
-                        </div>
+                        <button name="action_add_lesson" type="object"
+                                icon="fa-plus-square" class="oe_stat_button">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value d-flex gap-1">
+                                    <field name="lesson_count" widget="statinfo" nolabel="1" class="oe_inline"/>
+                                    <!--                                        <field name="uom_name" class="oe_inline"/>-->
+                                </span>
+                                <span class="o_stat_text">Lessons</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="reference"/>
+                        <h1>
+                            <field name="reference" placeholder="e.g. Course Number"/>
+                        </h1>
+                    </div>
                     <group>
                         <group>
                             <field name="name"/>
@@ -126,7 +135,7 @@
         <field name="name">Server Action</field>
         <field name="model_id" ref="ica_elearning.model_ica_course"/>
         <field name="binding_model_id" ref="ica_elearning.model_ica_course"/>
-            <field name="binding_view_types">form,list</field>
+        <field name="binding_view_types">form,list</field>
         <field name="state">code</field>
         <field name="code">
             records.action_published()
