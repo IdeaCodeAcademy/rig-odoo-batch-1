@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ica_course_report_action" model="ir.actions.report">
+        <field name="name">Course Quotation</field>
+        <field name="model">ica.course</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="binding_model_id" ref="ica_elearning.model_ica_course"/>
+            <field name="print_report_name">('ICA - %s' % (object.name))</field>
+        <field name="report_name">ica_elearning.report_ica_course</field>
+        <field name="report_file">ica_elearning.report_ica_course</field>
+    </record>
+</odoo>

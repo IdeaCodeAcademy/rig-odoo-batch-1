@@ -15,6 +15,9 @@
         "views/ica_lesson.xml",
         "views/ica_course.xml",
         "views/menus.xml",
+
+        "report/ica_course_template.xml",
+        "report/ica_course_reports.xml",
     ],
     "assets":{
         "web.assets_backend":[
