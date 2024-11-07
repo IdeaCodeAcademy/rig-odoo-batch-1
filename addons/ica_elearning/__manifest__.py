@@ -2,7 +2,7 @@
     "name": "ICA E-Learning",
     "license": "LGPL-3",
     "author": "IdeaCode Academy",
-    "depends": ["base", "web", "mail","contacts"],
+    "depends": ["base", "web", "mail","contacts","report_xlsx"],
     "data": [
         "security/elearning_groups.xml",
         "security/ir.model.access.csv",
