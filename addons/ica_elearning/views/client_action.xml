@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.client" id="my_client_action">
+        <field name="name">My Client Action</field>
+        <field name="tag">ica_elearning.MyClientAction</field>
+        <field name="target">fullscreen</field>
+    </record>
+</odoo>

@@ -3,8 +3,21 @@
 
     <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
     <menuitem id="ica_elearning_root" name="ICA E-Learning">
-        <menuitem id="ica_course_category" name="Courses" action="ica_elearning.ica_course_action"/>
-        <menuitem id="ica_lesson_category" name="Lessons" action="ica_elearning.ica_lesson_action"/>
-        <menuitem id="ica_order_category" name="Orders" action="ica_elearning.ica_order_action"/>
+        <menuitem id="ica_course_category" name="Courses" action="ica_elearning.ica_course_action"
+                  groups="ica_elearning.group_learner" sequence="3"/>
+        <menuitem id="ica_lesson_category" name="Lessons" action="ica_elearning.ica_lesson_action"
+                  groups="ica_elearning.group_instructor" sequence="2"/>
+        <menuitem id="ica_order_category" name="Orders" action="ica_elearning.ica_order_action"
+                  groups="ica_elearning.group_admin" sequence="1"/>
+        <menuitem id="ica_client_action_category" name="Client Action" action="ica_elearning.my_client_action"/>
+        <!-- This Menu Item Must have a parent -->
+        <!--        <menuitem id="configuration_category" name="Configuration">-->
+        <!--            &lt;!&ndash; This Menu Item must have a parent and an action &ndash;&gt;-->
+        <!--            <menuitem id="contacts_category" name="Contacts" action="contacts.action_contacts"/>-->
+        <!--        </menuitem>-->
+        <menuitem id="configuration_category" name="Configuration" sequence="0"/>
     </menuitem>
+
+    <menuitem id="contacts_category" name="Contacts" action="contacts.action_contacts"
+              parent="ica_elearning.configuration_category"/>
 </odoo>

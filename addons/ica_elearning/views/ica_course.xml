@@ -64,7 +64,7 @@
                             <field name="fees"/>
                         </group>
                         <group>
-                            <field name="partner_id"/>
+                            <field name="partner_id" groups="ica_elearning.group_admin"/>
                             <field name="category_ids" widget="many2many_tags"/>
                         </group>
                     </group>

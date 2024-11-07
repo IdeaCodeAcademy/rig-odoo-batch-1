@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="ica_elearning.module_ica_elearning">
+            <field name="name">ICA E-Learning</field>
+            <field name="sequence">7</field>
+        </record>
+
+        <record id="group_learner" model="res.groups">
+            <field name="name">Learner</field>
+            <field name="category_id" ref="ica_elearning.module_ica_elearning"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_instructor" model="res.groups">
+            <field name="name">Instructor</field>
+            <field name="category_id" ref="ica_elearning.module_ica_elearning"/>
+            <field name="implied_ids" eval="[(4, ref('ica_elearning.group_learner'))]"/>
+        </record>
+        <record id="group_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="ica_elearning.module_ica_elearning"/>
+            <field name="implied_ids" eval="[(4, ref('ica_elearning.group_instructor'))]"/>
+        </record>
+    </data>
+
+    <data>
+        <record id="ir_rule_learner" model="ir.rule">
+            <field name="name">ICA E-Learning : Learner Rules</field>
+            <field name="model_id" ref="ica_elearning.model_ica_course"/>
+            <field name="domain_force">[('state', '=', 'published')]</field>
+            <field name="groups" eval="[(4, ref('ica_elearning.group_learner'))]"/>
+        </record>
+
+        <record id="ir_rule_instructor" model="ir.rule">
+            <field name="name">ICA E-Learning : Instructor Rules</field>
+            <field name="model_id" ref="ica_elearning.model_ica_course"/>
+            <field name="domain_force">[('state', 'in', ['published', 'draft'])]</field>
+            <field name="groups" eval="[(4, ref('ica_elearning.group_instructor'))]"/>
+        </record>
+
+        <record id="ir_rule_admin" model="ir.rule">
+            <field name="name">ICA E-Learning : Admin Rules</field>
+            <field name="model_id" ref="ica_elearning.model_ica_course"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('ica_elearning.group_admin'))]"/>
+        </record>
+    </data>
+</odoo>
